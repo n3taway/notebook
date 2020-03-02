@@ -8,7 +8,7 @@ const pwd = path.resolve(__dirname);
 const allFilePath = fs.readdirSync(pwd);
 
 // 排除不需要的文件夹
-const EXCLUDEDIR = ['.git', 'node_modules', '.DS_Store'];
+const EXCLUDEDIR = ['.git', 'node_modules', '.DS_Store', 'lib'];
 const DSSTORE = '.DS_Store';
 
 // 将笔记文件夹放入笔记文件夹list
@@ -48,7 +48,6 @@ const noteHtmlDir = generateHtmlAllFilePath
         if (stats.isDirectory() && !EXCLUDEDIR.includes(fileDirName)) {
             return {
                 fileDirName,
-                fullDirPath,
                 fileNames: fs.readdirSync(fullDirPath).filter(fileName => /\.html$/.test(fileName))
             }
         }

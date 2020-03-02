@@ -4,7 +4,8 @@
   "description": "📃 一些笔记。",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node -- ./bootstrap.js"
+    "start": "babel-node -- ./bootstrap.js",
+    "cleanNotebook": "babel-node -- ./clean.js 清除html 初始化html中script中变量"
   },
   "repository": {
     "type": "git",

@@ -1,13 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>notebook</title>
+    <script src="https://cdn.bootcss.com/react/16.8.6/umd/react.development.js"></script>
+    <script src="https://cdn.bootcss.com/react-dom/16.8.6/umd/react-dom.development.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.js"></script>
+    <style>
+        html {
+            background: #6c7989 linear-gradient(#6c7989, #434b55) fixed;
+        }
+
+        body {
+            padding: 50px 0;
+            margin: 0;
+            font: 14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: #555;
+            font-weight: 300;
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAeCAYAAABNChwpAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNXG14zYAAAAUdEVYdENyZWF0aW9uIFRpbWUAMy82LzEygrTcTAAAAFRJREFUSIljfPDggZRf5RIGGNjUHsNATz6jXmSL1Kb2GLiAX+USBnrymRgGGDCORgFmoNAXjEbBaBSMRsFoFIxGwWgUjEbBaBSMRsFoFIxGwWgUAABYNujumib3wAAAAABJRU5ErkJggg==) fixed;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            border-radius: 8px 8px 0 0;
+            background: linear-gradient(#ddfbfc, #c6eafa);
+            border-bottom: 1px solid #B2D2E1;
+        }
+
+        header h1 {
+            margin: 0;
+            padding: 0;
+            font-size: 24px;
+            line-height: 1.2;
+            color: #069;
+            text-shadow: rgba(255, 255, 255, 0.9) 0 1px 0;
+        }
+
+        header p {
+            margin: 0;
+            color: #61778B;
+            width: 300px;
+            font-weight: 400;
+        }
+
+        .wrapper {
+            width: 640px;
+            min-height: 85vh;
+            margin: 0 auto;
+            background: linear-gradient(#fafafa, #dedede 700px);
+            border-radius: 8px;
+            box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(0, 0, 0, 0.45) 0 3px 10px;
+        }
+
+        .header-title {
+            padding: 15px 0 15px 40px;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: flex-end;
+            padding: 0 20px;
+        }
+
+        .header-nav>div {
+            height: 40px;
+        }
+    </style>
 </head>
+
 <body>
+    <div id="container"></div>
     <script>
         globalScript
     </script>
+    <script type="text/babel">
+        function App() {
+            return (
+                <div className="wrapper">
+                    <Header />
+                    <Section />
+                </div>
+            );
+        }
+        function Header() {
+            const { noteHtmlDir } = window;
+            return (
+                <header>
+                    <div className="header-title">
+                        <h1>n3taway</h1>
+                        <p>notebook.</p>
+                    </div>
+                    <div className="header-nav">
+                        {noteHtmlDir.map((item, index) => {
+                            return <div key={index}>{item.fileDirName}</div>
+                        })}
+                    </div>
+                </header>
+            );
+        }
+        function Section() {
+            const { noteHtmlDir, location: { href } } = window;
+            return (
+                <section>
+                    {noteHtmlDir.map((item, index) => {
+                        return (
+                            <div key={index}>
+                                <div>{item.fileDirName}</div>
+                                <div>{item.fileNames.map(fileName => {
+                                    return <a key={fileName} href={`${href}${item.fileDirName}/${fileName}`}>{fileName}</a>
+                                })}</div>
+                            </div>
+                        )
+                    })}
+                </section>
+            );
+        }
+        ReactDOM.render(<App />, document.getElementById('container'));
+    </script>
 </body>
+
 </html>
