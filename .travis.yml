@@ -4,7 +4,7 @@ node_js:
 before_script:
 - npm i -g github-markdown
 script:
-- node ./bootstrap.js
+- npm run start
 - rm -rf .git
 - git init
 - git config user.name "n3taway"
