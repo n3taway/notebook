@@ -110,7 +110,13 @@
                             <div key={index}>
                                 <div>{item.fileDirName}</div>
                                 <div>{item.fileNames.map(fileName => {
-                                    return <a key={fileName} href={`${href}${item.fileDirName}/${fileName}`}>{fileName}</a>
+                                    return (
+                                        <a
+                                            key={fileName}
+                                            target="_blank"
+                                            href={`${href}${item.fileDirName}/${fileName}`}
+                                        >{fileName}</a>
+                                    )
                                 })}</div>
                             </div>
                         )
