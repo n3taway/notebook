@@ -1,0 +1,21 @@
+{
+  "name": "notebook",
+  "version": "1.0.0",
+  "description": "📃 一些笔记。",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node -- ./bootstrap.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@n3taway.github.com:n3taway/notebook.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/node": "^7.7.4",
+    "@babel/preset-env": "^7.7.6"
+  }
+}

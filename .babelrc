@@ -1,0 +1,13 @@
+{
+    "presets": [
+        [
+            // 指定node环境
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "node": "10"
+                }
+            }
+        ]
+    ]
+}
