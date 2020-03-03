@@ -4,8 +4,8 @@
   "description": "📃 一些笔记。",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node -- ./bootstrap.js",
-    "cleanNotebook": "TODO: babel-node -- ./clean.js 清除html 初始化html中script中变量"
+    "prebuild": "babel-node -- ./script/prebuild.js",
+    "build": "babel-node -- ./script/build.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,7 @@
   "devDependencies": {
     "@babel/core": "^7.7.5",
     "@babel/node": "^7.7.4",
-    "@babel/preset-env": "^7.7.6"
+    "@babel/preset-env": "^7.7.6",
+    "cheerio": "^1.0.0-rc.3"
   }
 }

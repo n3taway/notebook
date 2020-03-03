@@ -1,20 +1,17 @@
 import fs from 'fs';
 import path from 'path';
 import cp from 'child_process';
+import cheerio from 'cheerio';
+import { EXCLUDEDIR } from './constant.js';
 
-// 当前目录
-const pwd = path.resolve(__dirname);
-// 读取当前目录下的所有文件和文件夹
+const pwd = path.resolve(__dirname,'../');
+// 读取改目录下的所有文件和文件夹
 const allFilePath = fs.readdirSync(pwd);
-
-// 排除不需要的文件夹
-const EXCLUDEDIR = ['.git', 'node_modules', '.DS_Store', 'lib'];
-const DSSTORE = '.DS_Store';
 
 // 将笔记文件夹放入笔记文件夹list
 const noteDir = allFilePath
     .map(fileDirName => {
-        const fullDirPath = path.resolve(__dirname, fileDirName);
+        const fullDirPath = path.resolve(pwd, fileDirName);
         const stats = fs.statSync(fullDirPath);
         if (stats.isDirectory() && !EXCLUDEDIR.includes(fileDirName)) {
             return {
@@ -43,7 +40,7 @@ noteDir.forEach(note => {
 const generateHtmlAllFilePath = fs.readdirSync(pwd);
 const noteHtmlDir = generateHtmlAllFilePath
     .map(fileDirName => {
-        const fullDirPath = path.resolve(__dirname, fileDirName);
+        const fullDirPath = path.resolve(pwd, fileDirName);
         const stats = fs.statSync(fullDirPath);
         if (stats.isDirectory() && !EXCLUDEDIR.includes(fileDirName)) {
             return {
@@ -54,13 +51,8 @@ const noteHtmlDir = generateHtmlAllFilePath
     })
     .filter(item => item);
 
+const $ = cheerio.load(fs.readFileSync('./index.html').toString());
+$('#globalScript').text(`window.noteHtmlDir=${JSON.stringify(noteHtmlDir)}`);
+fs.writeFileSync('./index.html', $.html());
 
-fs.writeFileSync(
-    './index.html',
-    fs.readFileSync('./index.html')
-        .toString()
-        .replace('globalScript', `
-            window.noteHtmlDir=${JSON.stringify(noteHtmlDir)}
-        `)
-);
 // console.log('noteHtmlDir: ', noteHtmlDir);
