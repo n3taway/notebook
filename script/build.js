@@ -5,7 +5,7 @@ import cheerio from 'cheerio';
 import { EXCLUDEDIR } from './constant.js';
 
 const pwd = path.resolve(__dirname,'../');
-// 读取改目录下的所有文件和文件夹
+// 读取该目录下的所有文件和文件夹
 const allFilePath = fs.readdirSync(pwd);
 
 // 将笔记文件夹放入笔记文件夹list
