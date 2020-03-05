@@ -21,6 +21,9 @@ async function checkDir() {
 async function checkHTML() {
     const $ = cheerio.load(fs.readFileSync('./index.html').toString());
     $('#globalScript').text('');
+    $('#React').attr('src','https://cdn.bootcss.com/react/16.8.6/umd/react.development.js');
+    $('#ReactDom').attr('src','https://cdn.bootcss.com/react-dom/16.8.6/umd/react-dom.development.js');
+    $('#Babel').attr('src','https://cdn.bootcss.com/babel-standalone/6.26.0/babel.js');
     fs.writeFileSync('./index.html', $.html());
     console.log('checkHTML done!');
 }
