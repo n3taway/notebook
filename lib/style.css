@@ -42,7 +42,7 @@ header p {
 
 .wrapper {
     width: 640px;
-    min-height: 85vh;
+    min-height: 87vh;
     margin: 0 auto;
     background: linear-gradient(#fafafa, #dedede 700px);
     border-radius: 8px;
@@ -57,26 +57,26 @@ header p {
     display: flex;
     align-items: flex-end;
     padding: 0 20px;
-}
-
-.header-nav>div {
-    height: 40px;
+    padding-bottom: 5px;
 }
 
 .btn-warp {
-    height: 48px;
-    width: 150px;
-    background-color: #1976d2;
+    width: 100px;
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    color: #fff;
+    height: 36px;
+    line-height: 36px;
+    border-radius: 5px;
+    background: linear-gradient(#77b9fb, #3782cd);
+    box-shadow: inset rgba(255, 255, 255, 0.45) 0 1px 0, inset rgba(0, 0, 0, 0.2) 0 -1px 0;
 }
 
 .btn-content {
     height: 100%;
     width: 100%;
     text-align: center;
-    line-height: 48px;
 }
 
 .ripple {
@@ -95,4 +95,23 @@ header p {
         transform: scale(2);
         opacity: 0;
     }
+}
+
+/*  */
+.month-wrap{
+    padding: 15px;
+}
+.month-wrap > div {
+    padding: 5px;
+}
+.month-wrap  a {
+    color: #555;
+    text-decoration: none;
+    font-weight: 400;
+}
+.month-wrap  a:visited {
+    color: #555;
+}
+.month-wrap  a:hover {
+    box-shadow: inset rgba(255, 255, 255, 0.45) 0 1px 0, inset rgba(0, 0, 0, 0.2) 0 -1px 0;
 }

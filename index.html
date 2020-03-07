@@ -5,72 +5,13 @@
     <script id="React" src="https://cdn.bootcss.com/react/16.8.6/umd/react.development.js"></script>
     <script id="ReactDom" src="https://cdn.bootcss.com/react-dom/16.8.6/umd/react-dom.development.js"></script>
     <script id="Babel" src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.js"></script>
-    <style>
-        html {
-            background: #6c7989 linear-gradient(#6c7989, #434b55) fixed;
-        }
-
-        body {
-            padding: 50px 0;
-            margin: 0;
-            font: 14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
-            color: #555;
-            font-weight: 300;
-            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAeCAYAAABNChwpAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNXG14zYAAAAUdEVYdENyZWF0aW9uIFRpbWUAMy82LzEygrTcTAAAAFRJREFUSIljfPDggZRf5RIGGNjUHsNATz6jXmSL1Kb2GLiAX+USBnrymRgGGDCORgFmoNAXjEbBaBSMRsFoFIxGwWgUjEbBaBSMRsFoFIxGwWgUAABYNujumib3wAAAAABJRU5ErkJggg==) fixed;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            border-radius: 8px 8px 0 0;
-            background: linear-gradient(#ddfbfc, #c6eafa);
-            border-bottom: 1px solid #B2D2E1;
-        }
-
-        header h1 {
-            margin: 0;
-            padding: 0;
-            font-size: 24px;
-            line-height: 1.2;
-            color: #069;
-            text-shadow: rgba(255, 255, 255, 0.9) 0 1px 0;
-        }
-
-        header p {
-            margin: 0;
-            color: #61778B;
-            width: 300px;
-            font-weight: 400;
-        }
-
-        .wrapper {
-            width: 640px;
-            min-height: 85vh;
-            margin: 0 auto;
-            background: linear-gradient(#fafafa, #dedede 700px);
-            border-radius: 8px;
-            box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(0, 0, 0, 0.45) 0 3px 10px;
-        }
-
-        .header-title {
-            padding: 15px 0 15px 40px;
-        }
-
-        .header-nav {
-            display: flex;
-            align-items: flex-end;
-            padding: 0 20px;
-        }
-
-        .header-nav>div {
-            height: 40px;
-        }
-    </style>
+    <link rel="stylesheet" href="./lib/style.css">
 </head>
 
 <body>
     <div id="container"></div>
     <script id="globalScript"></script>
+    <script type="text/babel" src="./lib/components.js"></script>
     <script type="text/babel">
         function App() {
             return (
@@ -82,6 +23,17 @@
         }
         function Header() {
             const { noteHtmlDir } = window;
+            const sources = {};
+            noteHtmlDir.forEach(noteObj => {
+                const { fileDirName, fileNames } = noteObj
+                const [year] = fileDirName.split('.');
+                if (sources[year]) {
+                    sources[year].push(noteObj);
+                } else {
+                    sources[year] = [noteObj];
+                }
+            });
+
             return (
                 <header>
                     <div className="header-title">
@@ -89,8 +41,8 @@
                         <p>notebook.</p>
                     </div>
                     <div className="header-nav">
-                        {noteHtmlDir.map((item, index) => {
-                            return <div key={index}>{item.fileDirName}</div>
+                        {[Object.keys(sources)].map((year) => {
+                            return <Button key={year}>{year}</Button>
                         })}
                     </div>
                 </header>
@@ -102,17 +54,15 @@
                 <section>
                     {noteHtmlDir.map((item, index) => {
                         return (
-                            <div key={index}>
-                                <div>{item.fileDirName}</div>
-                                <div>{item.fileNames.map(fileName => {
+                            <div key={index} className="month-wrap">
+                                <h1>{item.fileDirName.split('.')[1]}</h1>
+                                {item.fileNames.map(fileName => {
                                     return (
-                                        <a
-                                            key={fileName}
-                                            target="_blank"
-                                            href={`${href}${item.fileDirName}/${fileName}`}
-                                        >{fileName}</a>
+                                        <div key={fileName}>
+                                            <a target="_blank" href={`${href}${item.fileDirName}/${fileName}`}>{fileName}</a>
+                                        </div>
                                     )
-                                })}</div>
+                                })}
                             </div>
                         )
                     })}
@@ -121,6 +71,8 @@
         }
         ReactDOM.render(<App />, document.getElementById('container'));
     </script>
+
+
 
 
 </body></html>
