@@ -155,7 +155,11 @@ class PanelContent extends React.Component {
     }
 }
 ```
+<<<<<<< HEAD
 通过debug可查看每个阶段的动画情况。 
+=======
+通过debug可查看每个阶段的动画情况。
+>>>>>>> e092ec38d2d68242b0ebf420160519835e4d4da9
 ![](https://raw.githubusercontent.com/n3tawayShadow/fileStore/master/2020.03/Collapse_animation_debugger.gif)
 
 相关文章
