@@ -2,13 +2,13 @@ import fs from 'fs';
 import cheerio from 'cheerio';
 import liveServer from 'live-server';
 
-async function switchSrc() {
+async function changeLibSrc() {
     const $ = cheerio.load(fs.readFileSync('./index.html').toString());
     $('#React').attr('src', './lib/react.development.js');
     $('#ReactDom').attr('src', './lib/react-dom.development.js');
     $('#Babel').attr('src', './lib/babel.js');
     fs.writeFileSync('./index.html', $.html());
-    console.log('switchSrc done!');
+    console.log('dev: 三方库引用本地资源!');
 }
 
 async function localService() {
@@ -24,7 +24,7 @@ async function localService() {
 }
 
 async function dev() {
-    await switchSrc();
+    await changeLibSrc();
     await localService();
 }
 

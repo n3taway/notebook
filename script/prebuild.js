@@ -3,7 +3,7 @@ import path from 'path';
 import cheerio from 'cheerio';
 import { EXCLUDEDIR } from './constant.js';
 
-async function checkDir() {
+async function clearMarkdownCreatedHTML() {
     const pwd = path.resolve(__dirname, '../');
     const allFilePath = fs.readdirSync(pwd);
     allFilePath.forEach(fileDirName => {
@@ -15,24 +15,24 @@ async function checkDir() {
                 .forEach(item => fs.unlinkSync(`${fullDirPath}/${item}`))
         }
     })
-    console.log('checkDir done!');
+    console.log('预发布：清除md生成的html完毕!');
 }
 
-async function checkHTML() {
+async function changeLibSrcAndclearGlobalVar() {
     const $ = cheerio.load(fs.readFileSync('./index.html').toString());
     $('#globalScript').text('');
     $('#React').attr('src','https://cdn.bootcss.com/react/16.8.6/umd/react.development.js');
     $('#ReactDom').attr('src','https://cdn.bootcss.com/react-dom/16.8.6/umd/react-dom.development.js');
     $('#Babel').attr('src','https://cdn.bootcss.com/babel-standalone/6.26.0/babel.js');
     fs.writeFileSync('./index.html', $.html());
-    console.log('checkHTML done!');
+    console.log('预发布：三方库资源更换&清除全局变量完毕!!');
 }
 
 async function checkAll() {
 
-    await checkDir();
+    await clearMarkdownCreatedHTML();
 
-    await checkHTML();
+    await changeLibSrcAndclearGlobalVar();
 
 }
 

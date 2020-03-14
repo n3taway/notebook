@@ -4,7 +4,7 @@ import cp from 'child_process';
 import cheerio from 'cheerio';
 import { EXCLUDEDIR } from './constant.js';
 
-const pwd = path.resolve(__dirname,'../');
+const pwd = path.resolve(__dirname, '../');
 // 读取该目录下的所有文件和文件夹
 const allFilePath = fs.readdirSync(pwd);
 
