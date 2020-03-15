@@ -64,6 +64,7 @@ env:
 相关文章
 
 - [持续集成服务 Travis CI 教程-阮一峰的网络日志](http://www.ruanyifeng.com/blog/2017/12/travis_ci_tutorial.html)
+- [GitHub Pages action构建失败-解决方法](https://github.community/t5/GitHub-Pages/GitHub-Pages-Builds-Fail/td-p/29172)
 &emsp;
 
 
