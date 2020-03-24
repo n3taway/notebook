@@ -97,6 +97,7 @@ export default class CollapsePanel extends Component {
                     component="" // 包裹组件 默认为span
                     animation={{
                         enter(node, done) {
+                            // 闭包 存储私有变量
                             let height;
                             return cssAnimation(node, transitionName, {
                                 start() {
