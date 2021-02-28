@@ -84,13 +84,7 @@
   }
 </style>
 ```
-演示
- <iframe 
- height="500px"
- src="https://css-grid-practice.vercel.app/1container.html"  
- frameborder=0  
- allowfullscreen>
-</iframe>
+演示 [https://css-grid-practice.vercel.app/1container.html](https://css-grid-practice.vercel.app/1container.html)
 2. **`grid-template-areas` + `grid-area`** 指定区域布局。
 tips：指定区域布局后，项目元素的顺序是不用考虑的。
 
@@ -135,13 +129,7 @@ tips：指定区域布局后，项目元素的顺序是不用考虑的。
         }
     </style>
 ```
-演示
- <iframe 
- height="500px"
- src="https://css-grid-practice.vercel.app/2container.html"  
- frameborder=0  
- allowfullscreen>
-</iframe>
+演示 [https://css-grid-practice.vercel.app/2container.html](https://css-grid-practice.vercel.app/2container.html)
 3. **`grid-auto-flow`** 修改行列顺序
   tips：grid内的项目默认是 **先行后列** 的顺序。grid-auto-flow: column为**先列后行**排序。
 
@@ -171,13 +159,7 @@ tips：指定区域布局后，项目元素的顺序是不用考虑的。
         }
     </style>
 ```
-演示
- <iframe 
- height="500px"
- src="https://css-grid-practice.vercel.app/3container.html"  
- frameborder=0  
- allowfullscreen>
-</iframe>
+演示 [https://css-grid-practice.vercel.app/3container.html](https://css-grid-practice.vercel.app/3container.html)
 4. **justify-items **  **align-items** 指定每个网格内容的位置。 （上.中.下）start | end | center ，和特殊的拉伸stretch。
 
    tips: 这两个属性作用在容器上，仅对顶级项目生效。**复合属性place-items**：align-items  justify-items; 只有一个值的情况下后面的值与第一个值一样。place-items：start; ===  place-items：start start;
@@ -233,13 +215,7 @@ tips：指定区域布局后，项目元素的顺序是不用考虑的。
         }
     </style>
 ```
-演示
- <iframe 
- height="500px"
- src="https://css-grid-practice.vercel.app/4container.html"  
- frameborder=0  
- allowfullscreen>
-</iframe>
+演示 [https://css-grid-practice.vercel.app/4container.html](https://css-grid-practice.vercel.app/4container.html)
 5. **justify-content **  **align-content**  指定每个网格的位置。 start | end | center | stretch | space-around | space-between | space-evenly;整个内容的水平、垂直对齐方向。当网格没有具体的宽高时，这两个属性的默认值为stretch拉伸占据整个网格容器。**复合属性place-conten**t和place-items规则一样。
 
 ```html
@@ -300,13 +276,7 @@ tips：指定区域布局后，项目元素的顺序是不用考虑的。
         }
     </style>
 ```
-演示
- <iframe 
- height="500px"
- src="https://css-grid-practice.vercel.app/5container.html"  
- frameborder=0  
- allowfullscreen>
-</iframe>
+演示 [https://css-grid-practice.vercel.app/5container.html](https://css-grid-practice.vercel.app/5container.html)
 6. **grid-auto-columns  grid-auto-rows** 这两个属性用于定义超出网格外项目的宽高。
 ```html
     <div class="wrapper">
@@ -376,14 +346,7 @@ tips：指定区域布局后，项目元素的顺序是不用考虑的。
         }
     </style>
 ```
-演示
- <iframe 
- height="500px"
- src="https://css-grid-practice.vercel.app/6container.html"  
- frameborder=0  
- allowfullscreen>
-</iframe>
-
+演示 [https://css-grid-practice.vercel.app/6container.html](https://css-grid-practice.vercel.app/6container.html)
 ## 项目属性
 
 1. **grid-column-start 、grid-column-end  、grid-row-start 、grid-row-end** 网格自定义跨行跨列。
@@ -450,13 +413,7 @@ tips：指定区域布局后，项目元素的顺序是不用考虑的。
         }
     </style>
 ```
-演示
- <iframe 
- height="500px"
- src="https://css-grid-practice.vercel.app/1item.html"  
- frameborder=0  
- allowfullscreen>
-</iframe>
+演示 [https://css-grid-practice.vercel.app/1item.html](https://css-grid-practice.vercel.app/1item.html)
 2. **grid-column grid-row** 跨行跨列的简写，<a id="precompileCss"> 在预编译语言中计算符号需要做特殊处理。</a>
 
 ```html
@@ -516,13 +473,7 @@ tips：指定区域布局后，项目元素的顺序是不用考虑的。
         }
     </style>
 ```
-演示
- <iframe 
- height="500px"
- src="https://css-grid-practice.vercel.app/2item.html"  
- frameborder=0  
- allowfullscreen>
-</iframe>
+演示 [https://css-grid-practice.vercel.app/2item.html](https://css-grid-practice.vercel.app/2item.html)
 3. **justify-self  align-self  ** 项目内水平、垂直方向的对齐方式，**复合属性place-self**。
 
 ```html
@@ -579,15 +530,7 @@ tips：指定区域布局后，项目元素的顺序是不用考虑的。
         }
     </style>
 ```
-演示
- <iframe 
- height="500px"
- src="https://css-grid-practice.vercel.app/3item.html"  
- frameborder=0  
- allowfullscreen>
-</iframe>
-   
-
+演示 [https://css-grid-practice.vercel.app/3item.html](https://css-grid-practice.vercel.app/3item.html)
 # 常用布局
 
 1. 容器宽度固定/不固定，每行确定个数并平均分配。
@@ -614,13 +557,7 @@ tips：指定区域布局后，项目元素的顺序是不用考虑的。
         }
     </style>
 ```
-演示
- <iframe 
- height="500px"
- src="https://css-grid-practice.vercel.app/1layout.html"  
- frameborder=0  
- allowfullscreen>
-</iframe>
+演示 [https://css-grid-practice.vercel.app/1layout.html](https://css-grid-practice.vercel.app/1layout.html)
 2. 容器宽度不固定，每列固定宽度自动换行，达到每一行/列，容纳尽可能多的单元格。
 
 ```html
@@ -653,13 +590,7 @@ tips：指定区域布局后，项目元素的顺序是不用考虑的。
         }
     </style>
 ```
-演示
- <iframe 
- height="500px"
- src="https://css-grid-practice.vercel.app/2layout.html"  
- frameborder=0  
- allowfullscreen>
-</iframe>
+演示 [https://css-grid-practice.vercel.app/2layout.html](https://css-grid-practice.vercel.app/2layout.html)
 3. 上中下结构，内容是侧边的倍数。
 
 ```html
@@ -706,13 +637,7 @@ tips：指定区域布局后，项目元素的顺序是不用考虑的。
         }
     </style>
 ```
-演示
- <iframe 
- height="500px"
- src="https://css-grid-practice.vercel.app/3layout.html"  
- frameborder=0  
- allowfullscreen>
-</iframe>
+演示 [https://css-grid-practice.vercel.app/3layout.html](https://css-grid-practice.vercel.app/3layout.html)
 4. 两列表单，特殊列占整行。
 
 ```html
@@ -781,13 +706,7 @@ tips：指定区域布局后，项目元素的顺序是不用考虑的。
         }
     </style>
 ```
-演示
- <iframe 
- height="500px"
- src="https://css-grid-practice.vercel.app/4layout.html"  
- frameborder=0  
- allowfullscreen>
-</iframe>
+演示 [https://css-grid-practice.vercel.app/4layout.html](https://css-grid-practice.vercel.app/4layout.html)
 
 ### demo
 - [ ] 用grid布局轻松完成矢量马赛克文字。
