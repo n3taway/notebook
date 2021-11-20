@@ -1,58 +1,66 @@
-import fs from 'fs';
-import path from 'path';
-import cp from 'child_process';
-import cheerio from 'cheerio';
-import { EXCLUDEDIR } from './constant.js';
+import fs from "fs";
+import path from "path";
+import cheerio from "cheerio";
+import showdown from "showdown";
+import { EXCLUDEDIR } from "./constant.js";
 
-const pwd = path.resolve(__dirname, '../');
-// 读取该目录下的所有文件和文件夹
-const allFilePath = fs.readdirSync(pwd);
+const converter = new showdown.Converter();
 
-// 将笔记文件夹放入笔记文件夹list
-const noteDir = allFilePath
-    .map(fileDirName => {
-        const fullDirPath = path.resolve(pwd, fileDirName);
-        const stats = fs.statSync(fullDirPath);
-        if (stats.isDirectory() && !EXCLUDEDIR.includes(fileDirName)) {
-            return {
-                fullDirPath,
-                fileNames: fs.readdirSync(fullDirPath).filter(fileName => /\.md$/.test(fileName))
-            }
-        }
-    })
-    .filter(item => item);
-// console.log('>>>', noteDir);
-noteDir.forEach(note => {
-    const { fullDirPath, fileNames } = note;
-    fileNames.forEach(fileName => {
-        cp.spawnSync(
-            'ghmd',//执行命令
-            [fileName],//命令参数
-            {
-                cwd: fullDirPath  //指定路径 执行以上命令
-            }
-        );
-    });
+const getDirInfo = (dir) => {
+  const files = fs.readdirSync(dir);
+  const noteDirs = files.map((file) => {
+    const filePath = path.resolve(dir, file);
+    const stats = fs.statSync(filePath);
+    if (stats.isDirectory() && !EXCLUDEDIR.includes(file)) {
+      return {
+        date: file,
+        filePath,
+        files: fs
+          .readdirSync(filePath)
+          .filter((fileName) => /\.md$/.test(fileName)),
+      };
+    }
+  });
+  const result = noteDirs
+    .filter((i) => i)
+    .reduce((pre, item) => {
+      const result = item.files.map((i) => {
+        const name = i.split(".md")[0];
+        return {
+          name,
+          date: item.date,
+          mdPath: `${item.filePath}/${name}.md`,
+          htmlPath: `${item.filePath}/${name}.html`,
+        };
+      });
+      return [...pre, ...result];
+    }, []);
+  return result;
+};
+
+const genHtml = (list) => {
+  for (const item of list) {
+    const mdStr = fs.readFileSync(item.mdPath, "utf8");
+    const html = converter.makeHtml(mdStr);
+    fs.writeFileSync(item.htmlPath, html, "utf8");
+  }
+};
+
+const rootDir = path.resolve(__dirname, "../");
+
+const fileInfo = getDirInfo(rootDir);
+
+genHtml(fileInfo);
+
+const noteHtmlDir = [...new Set(fileInfo.map((i) => i.date))].map((date) => {
+  return {
+    fileDirName: date,
+    fileNames: fileInfo.filter((o) => o.date === date).map((r) => r.name),
+  };
 });
 
+const $ = cheerio.load(fs.readFileSync("./index.html").toString());
+$("#globalScript").text(`window.noteHtmlDir=${JSON.stringify(noteHtmlDir)}`);
+fs.writeFileSync("./index.html", $.html());
 
-// 生成html后遍历
-const generateHtmlAllFilePath = fs.readdirSync(pwd);
-const noteHtmlDir = generateHtmlAllFilePath
-    .map(fileDirName => {
-        const fullDirPath = path.resolve(pwd, fileDirName);
-        const stats = fs.statSync(fullDirPath);
-        if (stats.isDirectory() && !EXCLUDEDIR.includes(fileDirName)) {
-            return {
-                fileDirName,
-                fileNames: fs.readdirSync(fullDirPath).filter(fileName => /\.html$/.test(fileName))
-            }
-        }
-    })
-    .filter(item => item);
-
-const $ = cheerio.load(fs.readFileSync('./index.html').toString());
-$('#globalScript').text(`window.noteHtmlDir=${JSON.stringify(noteHtmlDir)}`);
-fs.writeFileSync('./index.html', $.html());
-
-// console.log('noteHtmlDir: ', noteHtmlDir);
+// console.log("noteHtmlDir: ", noteHtmlDir);
