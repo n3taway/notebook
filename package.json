@@ -4,9 +4,9 @@
   "description": "📃 一些笔记。",
   "main": "index.js",
   "scripts": {
-    "prebuild": "babel-node -- ./script/prebuild.js",
-    "build": "babel-node -- ./script/build.js",
-    "dev": "babel-node -- ./script/dev.js",
+    "prebuild": "babel-node ./script/prebuild.js",
+    "build": "babel-node ./script/build.js",
+    "dev": "npm run build && babel-node ./script/dev.js",
     "start": "npm run prebuild && npm run build && npm run dev"
   },
   "repository": {
@@ -21,10 +21,9 @@
     "@babel/node": "^7.7.4",
     "@babel/preset-env": "^7.7.6",
     "cheerio": "^1.0.0-rc.3",
-    "github-markdown": "^3.2.0",
-    "live-server": "^1.2.1"
-  },
-  "dependencies": {
-    "showdown": "^1.9.1"
+    "globby": "^10.0.1",
+    "highlight.js": "^11.3.1",
+    "live-server": "^1.2.1",
+    "marked": "^0.7.0"
   }
 }

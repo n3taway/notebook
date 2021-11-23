@@ -22,9 +22,9 @@
             );
         }
         function Header() {
-            const { noteHtmlDir } = window;
+            const { noteList = [] } = window;
             const sources = {};
-            noteHtmlDir.forEach(noteObj => {
+            noteList.forEach(noteObj => {
                 const { fileDirName, fileNames } = noteObj
                 const [year] = fileDirName.split('.');
                 if (sources[year]) {
@@ -33,7 +33,6 @@
                     sources[year] = [noteObj];
                 }
             });
-
             return (
                 <header>
                     <div className="header-title">
@@ -41,7 +40,7 @@
                         <p>notebook.</p>
                     </div>
                     <div className="header-nav">
-                        {[Object.keys(sources)].map((year) => {
+                        {[].map((year) => {
                             return <Button key={year}>{year}</Button>
                         })}
                     </div>
@@ -49,17 +48,17 @@
             );
         }
         function Section() {
-            const { noteHtmlDir, location: { href } } = window;
+            const { noteList = [], location: { href } } = window;
             return (
                 <section>
-                    {noteHtmlDir.map((item, index) => {
+                    {noteList.map((item, index) => {
                         return (
                             <div key={index} className="month-wrap">
-                                <h1>{item.fileDirName.split('.')[1]}</h1>
+                                <h1>{item.fileDirName}</h1>
                                 {item.fileNames.map(fileName => {
                                     return (
                                         <div key={fileName}>
-                                            <a target="_blank" href={`${href}${item.fileDirName}/${fileName}.html`}>{fileName}</a>
+                                            <a target="_blank" href={`${href}pages/${item.fileDirName}/${fileName}.html`}>{fileName}</a>
                                         </div>
                                     )
                                 })}

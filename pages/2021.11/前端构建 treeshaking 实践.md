@@ -23,7 +23,7 @@ share.s1("s1");
 
 ### 整体导出，整体导入
 
-```js
+```javascript {1,3,8-12}
 // utils/help.js
 const h1 = (x) => {
   console.log(x);

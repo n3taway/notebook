@@ -1,5 +1,5 @@
 # notebook.  
 📃 一些笔记。
 
-
-[![Build Status](https://travis-ci.org/n3taway/notebook.svg?branch=master)](https://travis-ci.org/n3taway/notebook)
+<!-- TODO update status -->
+![Vercel](https://n3taway-notebook.vercel.app/?app=n3taway-notebook-vercel-badge)
