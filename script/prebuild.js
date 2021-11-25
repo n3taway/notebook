@@ -18,15 +18,15 @@ async function changeLibSrcAndClearGlobalVar() {
   $("#globalScript").text("");
   $("#React").attr(
     "src",
-    "https://cdn.bootcss.com/react/16.8.6/umd/react.development.js"
+    "https://cdn.jsdelivr.net/npm/react@16.8.6/cjs/react.production.min.js"
   );
   $("#ReactDom").attr(
     "src",
-    "https://cdn.bootcss.com/react-dom/16.8.6/umd/react-dom.development.js"
+    "https://cdn.jsdelivr.net/npm/react-dom@16.8.6/umd/react-dom.production.min.js"
   );
   $("#Babel").attr(
     "src",
-    "https://cdn.bootcss.com/babel-standalone/6.26.0/babel.js"
+    "https://cdn.jsdelivr.net/npm/babel-standalone@6.26.0/babel.min.js"
   );
   fs.writeFileSync(indexHtmlPath, $.html());
   console.log("预发布：三方库资源更换&清除全局变量完毕!!");
