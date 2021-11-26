@@ -18,7 +18,7 @@ async function changeLibSrcAndClearGlobalVar() {
   $("#globalScript").text("");
   $("#React").attr(
     "src",
-    "https://cdn.jsdelivr.net/npm/react@16.8.6/cjs/react.production.min.js"
+    "https://cdn.jsdelivr.net/npm/react@16.8.6/umd/react.production.min.js"
   );
   $("#ReactDom").attr(
     "src",
